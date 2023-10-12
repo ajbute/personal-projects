@@ -4,6 +4,7 @@ int main()
 {
         initscr();
 
+	// Displays all the characters from the ACS (Alternate Character Set)
         printw("Upper left corner           "); addch(ACS_ULCORNER); printw("\n\n"); 
         printw("Lower left corner           "); addch(ACS_LLCORNER); printw("\n");
         printw("Lower right corner          "); addch(ACS_LRCORNER); printw("\n");
