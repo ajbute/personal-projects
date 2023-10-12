@@ -8,6 +8,7 @@ int main()
         printw("Upper left corner           "); addch(ACS_ULCORNER); printw("\n\n"); 
         printw("Lower left corner           "); addch(ACS_LLCORNER); printw("\n");
         printw("Lower right corner          "); addch(ACS_LRCORNER); printw("\n");
+	printw("Upper right corner          "); addch(ACS_URCORNER); printw("\n\n");
         printw("Tee pointing right          "); addch(ACS_LTEE); printw("\n\n");
         printw("Tee pointing left           "); addch(ACS_RTEE); printw("\n\n");
         printw("Tee pointing up             "); addch(ACS_BTEE); printw("\n");
