@@ -7,14 +7,15 @@ int get_str_length(char str[]) {
     return count;
 }
 
+const int MAX_CHAR_LIMIT = 10;
+
 int main() {
     initscr();
-    int MAX_CHAR_LIMIT = 10;
     printw("Enter a string: ");
     char user_str[MAX_CHAR_LIMIT];
     // getnstr will beep and not allow the user to type any more characters than the passed limit
     getnstr(user_str, MAX_CHAR_LIMIT);
-    printw("%s is %i byte(s).", user_str, get_str_length(user_str));
+    printw("'%s' is %i byte(s).", user_str, get_str_length(user_str));
     getch();
 
     endwin();
