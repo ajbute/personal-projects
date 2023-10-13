@@ -62,7 +62,7 @@ int main() {
 
     // Declaring variables
     WINDOW *my_win;
-    int ch, cursor_x, cursor_y, win_max_y, win_max_x;
+    int ch, cursor_x, cursor_y;
     bool has_cursor_moved = false;
 
     // The start x and y position of the window relative to the origin (0, 0) which is the top left corner of the terminal; Unit is cells
