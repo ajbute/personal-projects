@@ -8,7 +8,7 @@
 
 /*
     This is a simple program that uses the ncurses wide library to create a window and print the contents of a text file (in this case frame.txt) 
-    inside of the window. One of the biggest features of the program is being UTF-8 compatible, meaning the text file can contain any UTF-8 characters, 
+    inside of the window. One of the biggest features of the program is being UTF-16 compatible, meaning the text file can contain any UTF-16 characters, 
     and the code will print them properly. The program prints the text file by iterating through each character of the file and printing them as wide 
     characters, until the end of the file is reached, or the cursor is at the bottom of the window's border. The program also takes into account that frame.txt 
     may contain more characters than can be printed inside of the window, and handles this case by simply only printing the maximum amount of characters that 
