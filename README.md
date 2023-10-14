@@ -1,2 +1,2 @@
 # Personal-Projects
-A repository to store all personal my projects / code
+A repository to store all of my personal projects / code
