@@ -1,0 +1,1 @@
+Paste the scheme in "Windows-Terminal/settings.json" into your "settings.json" for your windows terminal in the "schemes: " array. Then create or use an existing profile and select the scheme in the drop down list in the terminal Settings -> YourProfile -> Additional Settings -> Appearance -> Color scheme.

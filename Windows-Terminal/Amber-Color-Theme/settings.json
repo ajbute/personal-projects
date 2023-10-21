@@ -1,0 +1,24 @@
+// Scheme:
+{
+    "background": "#140B05",
+    "black": "#FCA833",
+    "blue": "#FCA833",
+    "brightBlack": "#FC9505",
+    "brightBlue": "#C07205",
+    "brightCyan": "#FC9505",
+    "brightGreen": "#9E5D07",
+    "brightPurple": "#FC9505",
+    "brightRed": "#FC9505",
+    "brightWhite": "#1C1008",
+    "brightYellow": "#C07205",
+    "cursorColor": "#FFB000",
+    "cyan": "#E58806",
+    "foreground": "#FC9505",
+    "green": "#4D2E03",
+    "name": "Amber",
+    "purple": "#E58806",
+    "red": "#4D2E03",
+    "selectionBackground": "#FFFFFF",
+    "white": "#FCA833",
+    "yellow": "#FCA833"
+}
