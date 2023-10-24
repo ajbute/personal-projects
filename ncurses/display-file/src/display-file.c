@@ -23,8 +23,8 @@ void print_error_message(const char* error_message, const char* file, int line);
 // Defining constants
 
 // The height and width of the window; Unit is cells;
-const int WIN_HEIGHT = 33;    
-const int WIN_WIDTH = 88;
+const int WIN_HEIGHT = 47;    
+const int WIN_WIDTH = 186;
 
 int main() {
     // Allows the program to correctly interpret and display characters based on the locale settings of the system or user's environment
@@ -99,10 +99,10 @@ bool print_file_in_window(const char* filename, WINDOW* local_win) {
 
     // Initializing errno to 0 in case there's an error
     errno = 0;
+    // Get the current cursor position
+    getyx(local_win, cursor_y, cursor_x);
     // Getting every wide character from the file until end of file is reached
     while ((wc = fgetwc(src)) != WEOF) {
-        // Get the current cursor position
-        getyx(local_win, cursor_y, cursor_x);
         // Cursor is on the window's bottom border
         if (cursor_y >= max_y) {
             // Stop printing
@@ -113,6 +113,7 @@ bool print_file_in_window(const char* filename, WINDOW* local_win) {
         if (wc == L'\n') {
             // Manually moving the cursor one line down because printing a new line messes up the windows border
             wmove(local_win, ++cursor_y, 1);
+            cursor_x = 1;
             continue;
         }
         // Ignoring carriage returns because wadd_wch clears to the end of the line
@@ -124,11 +125,13 @@ bool print_file_in_window(const char* filename, WINDOW* local_win) {
             setcchar(&wchar, &wc, 0, 0, NULL);
             // Printing the current character from the file
             wadd_wch(local_win, &wchar);
+            cursor_x++;
 
             // wadd_wch() moves the cursor over one so we check if it is on the windows right border edge
             if (cursor_x >= max_x) {
                 // Manually moving the cursor one line down because printing a new line messes up the windows border
                 wmove(local_win, ++cursor_y, 1);
+                cursor_x = 1;
                 // Cursor is on the window's bottom border
                 if (cursor_y >= max_y) {
                     // Stop printing
