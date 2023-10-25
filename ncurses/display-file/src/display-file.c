@@ -26,6 +26,10 @@ void print_error_message(const char* error_message, const char* file, int line);
 const int WIN_HEIGHT = 47;    
 const int WIN_WIDTH = 186;
 
+// The starting x and y position of the cursor in the window
+const int CURSOR_Y_START_POS = 1;
+const int CURSOR_X_START_POS = 1;
+
 int main() {
     // Allows the program to correctly interpret and display characters based on the locale settings of the system or user's environment
     setlocale(LC_ALL, "");
@@ -89,18 +93,19 @@ bool print_file_in_window(const char* filename, WINDOW* local_win) {
     // Attempts to open file and returns false if it can't
     if ((src = fopen(filename, "r")) == NULL) {
         // Prints error message with file name and the line that fopen() failed
-        print_error_message("fopen() failed", __FILE__, __LINE__ - 1);
+        print_error_message("fopen() failed", __FILE__, 94);
         // Closing file
         fclose(src);
         return false;
     }
-    // Moving cursor to top left of the window
-    wmove(local_win, 1, 1);
+    // Moving cursor to the start position in the window
+    wmove(local_win, CURSOR_Y_START_POS, CURSOR_X_START_POS);
 
     // Initializing errno to 0 in case there's an error
     errno = 0;
-    // Get the current cursor position
-    getyx(local_win, cursor_y, cursor_x);
+    // Setting the current x and y to the start position
+    cursor_y = CURSOR_Y_START_POS;
+    cursor_x = CURSOR_X_START_POS;
     // Getting every wide character from the file until end of file is reached
     while ((wc = fgetwc(src)) != WEOF) {
         // Cursor is on the window's bottom border
@@ -109,11 +114,11 @@ bool print_file_in_window(const char* filename, WINDOW* local_win) {
             break;
         }
 
-        // Current character is new line
+        // Current character is new line  
         if (wc == L'\n') {
-            // Manually moving the cursor one line down because printing a new line messes up the windows border
-            wmove(local_win, ++cursor_y, 1);
-            cursor_x = 1;
+            // Manually moving the cursor one line down and at the starting x position
+            wmove(local_win, ++cursor_y, CURSOR_X_START_POS);
+            cursor_x = CURSOR_X_START_POS;
             continue;
         }
         // Ignoring carriage returns because wadd_wch clears to the end of the line
@@ -127,11 +132,11 @@ bool print_file_in_window(const char* filename, WINDOW* local_win) {
             wadd_wch(local_win, &wchar);
             cursor_x++;
 
-            // wadd_wch() moves the cursor over one so we check if it is on the windows right border edge
+            // Checking if the cursor is on the windows right border edge
             if (cursor_x >= max_x) {
-                // Manually moving the cursor one line down because printing a new line messes up the windows border
-                wmove(local_win, ++cursor_y, 1);
-                cursor_x = 1;
+                // Manually moving the cursor one line down and at the starting x position
+                wmove(local_win, ++cursor_y, CURSOR_X_START_POS);
+                cursor_x = CURSOR_X_START_POS;
                 // Cursor is on the window's bottom border
                 if (cursor_y >= max_y) {
                     // Stop printing
